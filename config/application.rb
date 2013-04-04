@@ -4,8 +4,8 @@ require 'rails/all'
 
 ENV['FACEBOOK_KEY'] = '572459022778488'
 ENV['FACEBOOK_SECRET'] = 'e43623b546ab3839623d0a7df7750c8e'
-ENV['CONSUMER_KEY'] = 'e1b5jxcZp2aGLboCDs8Q'
-ENV['CONSUMER_SECRET'] = 'TSC7ytuQPlSdEILuBMHvfsWs6FtT83k3JoznnqHc0'
+ENV['CONSUMER_KEY'] = 'B32W1pq99z1PeGNlOxFFnA'
+ENV['CONSUMER_SECRET'] = 'wfs6audIUZzGaBvdgF8vPH2b8d1d1fCkVFbx21yAQ'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line

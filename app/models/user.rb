@@ -2,9 +2,10 @@ class User < ActiveRecord::Base
   has_many :authentications
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  # :lockable, :timeoutable
+  devise :database_authenticatable, :registerable,:omniauthable,
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauth_providers => [:facebook, :twitter]
   # Setup accessor
   attr_accessor :loginV
   # Setup accessible (or protected) attributes for your model
@@ -23,5 +24,25 @@ class User < ActiveRecord::Base
       return( where(conditions).first )
      end
 end
+  #=============================================================
+  # self.find_for_twitter_oauth
+  #=============================================================
+
+  def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
+    authV = Authentication.where( { :provider => auth.provider, :uid => auth.uid } ).first
+    if ( authV )
+       return( authV.user )
+    else 
+       user = User.create({    login:auth.info.nickname,
+                               email:auth.info.nickname+'@change.me',
+                               password:Devise.friendly_token[0,20]
+                         })
+
+       user.authentications.create ( { provider:auth.provider, uid:auth.uid })
+
+       return( user )
+    end
+  end
+ 
 
 end

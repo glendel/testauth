@@ -1,11 +1,13 @@
 Testauth::Application.routes.draw do
   resources :authentications
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   
   match '/auth/:provider/callback' => 'authentications#create'
-
+  get "home" => 'home#index'
+  post "home" => 'home#index'
   get "home/index"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
