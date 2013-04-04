@@ -44,5 +44,37 @@ end
     end
   end
  
+  
+  #=============================================================
+  # self.find_for_facebook_oauth
+  #=============================================================
+  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+    # 1. Buscar en la tabla "authentications".
+    # 1.1. Si existe buscar el usuario relacionado y retornar ese usuario.
+    # 1.2. Si no existe, crear el usuario con los datos suministrados por el proveedor incluyendo la authentication.
+   #=============================================================
+   # create_login_facebook
+   #============================================================= 
+   email = auth.info.email.split(/@/)
+    login_taken = User.where( :login => email[0]).first
+        unless login_taken
+            login = email[0]
+        else	
+            login = auth.info.email
+        end	       
+   #============================================================= 
+   authV = Authentication.where( { :provider => auth.provider, :uid => auth.uid } ).first
+   if ( authV )
+       return( authV.user )
+   else 
+      user = User.create( { login:login,
+                            email:auth.info.email,
+                            password:Devise.friendly_token[0,20]
+                         })
+      user.authentications.create ( { provider:auth.provider, uid:auth.uid } )
+    return( user )
+    end
+  end
+
 
 end
