@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable
   devise :database_authenticatable, :registerable,:omniauthable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauth_providers => [:facebook, :twitter]
+         :omniauth_providers => [:facebook, :twitter, :google_oauth2]
   # Setup accessor
   attr_accessor :loginV
   # Setup accessible (or protected) attributes for your model
@@ -23,7 +23,33 @@ class User < ActiveRecord::Base
      else
       return( where(conditions).first )
      end
-end
+  end
+
+  #=============================================================
+  # self.find_for_google_oauth2_oauth
+  #=============================================================
+
+  def self.find_for_google_oauth2_oauth(auth, signed_in_resource=nil)
+      loginV = auth.info.nickname
+      if (loginV == nil)
+          loginV = self.create_login(auth)  
+      end
+   #=============================================================      
+    authV = Authentication.where( { :provider => auth.provider, :uid => auth.uid } ).first
+    if ( authV )
+       return( authV.user )
+    else 
+       user = User.create({    login:loginV,
+                               email:auth.info.email,
+                               password:Devise.friendly_token[0,20]
+                         })
+
+       user.authentications.create ( { provider:auth.provider, uid:auth.uid })
+
+       return( user )
+    end
+  end
+
   #=============================================================
   # self.find_for_twitter_oauth
   #=============================================================
@@ -48,26 +74,17 @@ end
   #=============================================================
   # self.find_for_facebook_oauth
   #=============================================================
-  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
-    # 1. Buscar en la tabla "authentications".
-    # 1.1. Si existe buscar el usuario relacionado y retornar ese usuario.
-    # 1.2. Si no existe, crear el usuario con los datos suministrados por el proveedor incluyendo la authentication.
-   #=============================================================
-   # create_login_facebook
-   #============================================================= 
-   email = auth.info.email.split(/@/)
-    login_taken = User.where( :login => email[0]).first
-        unless login_taken
-            login = email[0]
-        else	
-            login = auth.info.email
-        end	       
+  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)   
+   loginV = auth.info.nickname
+   if (loginV == nil)
+      loginV = self.create_login(auth)  
+   end     
    #============================================================= 
    authV = Authentication.where( { :provider => auth.provider, :uid => auth.uid } ).first
    if ( authV )
        return( authV.user )
    else 
-      user = User.create( { login:login,
+      user = User.create( { login:loginV,
                             email:auth.info.email,
                             password:Devise.friendly_token[0,20]
                          })
@@ -75,6 +92,17 @@ end
     return( user )
     end
   end
-
+   #=============================================================
+   # create_login
+   #=============================================================
+   def self.create_login(auth)
+    email = auth.info.email.split(/@/)
+     login_taken = User.where( :login => email[0]).first
+        unless login_taken
+            return ( email[0] )
+        else	
+            return( auth.info.email )
+        end	       
+    end
 
 end
