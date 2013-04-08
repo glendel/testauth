@@ -32,9 +32,10 @@ class User < ActiveRecord::Base
     authV = Authentication.where( { :provider => auth.provider, :uid => auth.uid } ).first
     if ( authV )
        return( authV.user )
-    else 
+    else
+       uri = URI (auth.uid) 
        user = User.create({    login:auth.uid,
-                               email:auth.uid+'@change.me',
+                               email:uri.host+'@change.me',
                                password:Devise.friendly_token[0,20]
                          })
 

@@ -1,0 +1,29 @@
+<h1>Listing blogs</h1>
+
+<table>
+  <tr>
+    <th>Picture</th>
+    <th>Name</th>
+    <th>Birddate</th>
+    <th>Comment</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @blogs.each do |blog| %>
+  <tr>
+    <td><%= blog.picture %></td>
+    <td><%= blog.name %></td>
+    <td><%= blog.birddate %></td>
+    <td><%= blog.comment %></td>
+    <td><%= link_to 'Show', blog %></td>
+    <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
+    <td><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Blog', new_blog_path %>

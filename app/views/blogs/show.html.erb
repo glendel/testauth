@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Picture:</b>
+  <%= @blog.picture %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @blog.name %>
+</p>
+
+<p>
+  <b>Birddate:</b>
+  <%= @blog.birddate %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @blog.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_blog_path(@blog) %> |
+<%= link_to 'Back', blogs_path %>

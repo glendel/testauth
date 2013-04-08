@@ -1,4 +1,7 @@
 Testauth::Application.routes.draw do
+  resources :blogs
+
+
   resources :authentications
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
