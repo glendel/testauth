@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable
   devise :database_authenticatable, :registerable,:omniauthable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauth_providers => [:facebook, :twitter, :google_oauth2, :github]
+         :omniauth_providers => [:facebook, :twitter, :google_oauth2, :github, :openid]
   # Setup accessor
   attr_accessor :loginV
   # Setup accessible (or protected) attributes for your model
