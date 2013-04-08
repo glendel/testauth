@@ -16,6 +16,7 @@ gem 'devise'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-github'
 gem 'omniauth-openid'
+gem 'mongrel', '1.2.0.pre2'
 
 # Gems used only for assets and not required
 # in production environments by default.

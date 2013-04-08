@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable
   devise :database_authenticatable, :registerable,:omniauthable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauth_providers => [:facebook, :twitter, :google_oauth2, :github, :openid]
+         :omniauth_providers => [:facebook, :twitter, :google_oauth2, :github, :open_id]
   # Setup accessor
   attr_accessor :loginV
   # Setup accessible (or protected) attributes for your model
@@ -28,13 +28,13 @@ class User < ActiveRecord::Base
   # self.find_for_openid_oauth
   #=============================================================
 
-  def self.find_for_openid_oauth(auth, signed_in_resource=nil)
+  def self.find_for_open_id_oauth(auth, signed_in_resource=nil)
     authV = Authentication.where( { :provider => auth.provider, :uid => auth.uid } ).first
     if ( authV )
        return( authV.user )
     else 
-       user = User.create({    login:auth.info.nickname,
-                               email:auth.info.nickname+'@change.me',
+       user = User.create({    login:auth.uid,
+                               email:auth.uid+'@change.me',
                                password:Devise.friendly_token[0,20]
                          })
 
