@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable
   devise :database_authenticatable, :registerable,:omniauthable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauth_providers => [:facebook, :twitter, :google_oauth2]
+         :omniauth_providers => [:facebook, :twitter, :google_oauth2, :github]
   # Setup accessor
   attr_accessor :loginV
   # Setup accessible (or protected) attributes for your model
@@ -24,6 +24,53 @@ class User < ActiveRecord::Base
       return( where(conditions).first )
      end
   end
+  #=============================================================
+  # self.find_for_openid_oauth
+  #=============================================================
+
+  def self.find_for_openid_oauth(auth, signed_in_resource=nil)
+    authV = Authentication.where( { :provider => auth.provider, :uid => auth.uid } ).first
+    if ( authV )
+       return( authV.user )
+    else 
+       user = User.create({    login:auth.info.nickname,
+                               email:auth.info.nickname+'@change.me',
+                               password:Devise.friendly_token[0,20]
+                         })
+
+       user.authentications.create ( { provider:auth.provider, uid:auth.uid })
+
+       return( user )
+    end
+  end
+ 
+  #=============================================================
+  # self.find_for_github_oauth
+  #=============================================================
+
+  def self.find_for_github_oauth(auth, signed_in_resource=nil)
+    authV = Authentication.where( { :provider => auth.provider, :uid => auth.uid } ).first
+    if ( authV )
+       return( authV.user )
+    else
+       loginV = User.where( {:login => auth.info.nickname}).first
+       if ( loginV ) 
+          loginV = self.create_login(auth)
+          else
+          loginV = auth.info.nickname
+       end
+
+       user = User.create({    login:loginV,
+                               email:auth.info.email,
+                               password:Devise.friendly_token[0,20]
+                         })
+
+       user.authentications.create ( { provider:auth.provider, uid:auth.uid })
+
+       return( user )
+    end
+  end
+ 
 
   #=============================================================
   # self.find_for_google_oauth2_oauth
@@ -59,7 +106,13 @@ class User < ActiveRecord::Base
     if ( authV )
        return( authV.user )
     else 
-       user = User.create({    login:auth.info.nickname,
+       loginV = User.where( {:login => auth.info.nickname}).first
+       if ( loginV ) 
+          loginV = self.create_login(auth)
+          else
+          loginV = auth.info.nickname
+       end       
+      user = User.create({     login:loginV,
                                email:auth.info.nickname+'@change.me',
                                password:Devise.friendly_token[0,20]
                          })
@@ -77,7 +130,14 @@ class User < ActiveRecord::Base
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)   
    loginV = auth.info.nickname
    if (loginV == nil)
-      loginV = self.create_login(auth)  
+      loginV = self.create_login(auth)
+     else
+      loginV = User.where( {:login => auth.info.nickname}).first
+       if ( loginV ) 
+          loginV = self.create_login(auth)
+          else
+          loginV = auth.info.nickname
+       end  
    end     
    #============================================================= 
    authV = Authentication.where( { :provider => auth.provider, :uid => auth.uid } ).first

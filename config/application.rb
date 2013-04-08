@@ -8,6 +8,8 @@ ENV['CONSUMER_KEY'] = 'B32W1pq99z1PeGNlOxFFnA'
 ENV['CONSUMER_SECRET'] = 'wfs6audIUZzGaBvdgF8vPH2b8d1d1fCkVFbx21yAQ'
 ENV["GOOGLE_KEY"] = '31317523743-dkshvv3k1urtkqnqqiddfikme2je4uc4.apps.googleusercontent.com'
 ENV["GOOGLE_SECRET"] = 'w1AQ55wMuoj6YocgihCe28db'
+ENV["GITHUB_KEY"] = 'a4c74a17f1974dc3cbd6'
+ENV["GITHUB_SECRET"] = 'f7c068bd0c00c120b585b26225dee7b023f57e97'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line

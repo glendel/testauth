@@ -14,6 +14,8 @@ gem 'omniauth-facebook', '1.4.0'
 gem 'omniauth-twitter'
 gem 'devise'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-github'
+gem 'omniauth-openid'
 
 # Gems used only for assets and not required
 # in production environments by default.

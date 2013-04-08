@@ -9,7 +9,7 @@ Rails.logger.debug( request.env["omniauth.auth"].to_s )
     if ( @user.persisted? )
 Rails.logger.debug( 'Twitter Inside Persisted' )
       sign_in_and_redirect( @user, { :event => :authentication } ) 
-      set_flash_message( :notice, :success, { :kind => "twitter" } ) if ( is_navigational_format? )
+      set_flash_message( :notice, :success, { :kind => "Twitter" } ) if ( is_navigational_format? )
     else
 Rails.logger.debug( 'Twitter Else Persisted' )
       session["devise.twitter_data"] = request.env["omniauth.auth"].except("extra")
@@ -19,7 +19,7 @@ Rails.logger.debug( 'Twitter Else Persisted' )
   
 def facebook
 Rails.logger.debug( 'Facebook Before Find' )
-Rails.logger.debug( request.env["omniauth.auth"].to_s )
+
     # You need to implement the method below in your model (e.g. app/models/user.rb)
     @user = User.find_for_facebook_oauth(request.env["omniauth.auth"], current_user)
 Rails.logger.debug( 'Facebook Before Persisted' )
@@ -41,9 +41,33 @@ Rails.logger.debug( request.env["omniauth.auth"].to_s )
     @user = User.find_for_google_oauth2_oauth(request.env["omniauth.auth"], current_user)
     if ( @user.persisted? )
       sign_in_and_redirect( @user, { :event => :authentication } ) 
-      set_flash_message( :notice, :success, { :kind => "google_oauth2" } ) if ( is_navigational_format? )
+      set_flash_message( :notice, :success, { :kind => "Google+" } ) if ( is_navigational_format? )
     else
       session["devise.google_oauth2_data"] = request.env["omniauth.auth"].except("extra")
+      redirect_to( new_user_registration_url )
+    end
+  end
+
+def github
+Rails.logger.debug( request.env["omniauth.auth"].to_s )
+    @user = User.find_for_github_oauth(request.env["omniauth.auth"], current_user)
+    if ( @user.persisted? )
+      sign_in_and_redirect( @user, { :event => :authentication } ) 
+      set_flash_message( :notice, :success, { :kind => "github" } ) if ( is_navigational_format? )
+    else
+      session["devise.github_data"] = request.env["omniauth.auth"].except("extra")
+      redirect_to( new_user_registration_url )
+    end
+  end
+
+def openid
+Rails.logger.debug( request.env["omniauth.auth"].to_s )
+    @user = User.find_for_openid_oauth(request.env["omniauth.auth"], current_user)
+    if ( @user.persisted? )
+      sign_in_and_redirect( @user, { :event => :authentication } ) 
+      set_flash_message( :notice, :success, { :kind => "Openid" } ) if ( is_navigational_format? )
+    else
+      session["devise.openid_data"] = request.env["omniauth.auth"].except("extra")
       redirect_to( new_user_registration_url )
     end
   end
