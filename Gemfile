@@ -16,7 +16,12 @@ gem 'devise'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-github'
 gem 'omniauth-openid'
+gem 'omniauth-yahoo'
 gem 'mongrel', '1.2.0.pre2'
+gem 'omniauth-linkedin'
+gem 'thin'
+gem 'carrierwave'
+gem 'rmagick'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -72,4 +72,28 @@ Rails.logger.debug( request.env["omniauth.auth"].to_s )
     end
   end
 
+def linkedin
+Rails.logger.debug( request.env["omniauth.auth"].to_s )
+    @user = User.find_for_linkedin_oauth(request.env["omniauth.auth"], current_user)
+    if ( @user.persisted? )
+      sign_in_and_redirect( @user, { :event => :authentication } ) 
+      set_flash_message( :notice, :success, { :kind => "Linkedin" } ) if ( is_navigational_format? )
+    else
+      session["devise.linkedin_data"] = request.env["omniauth.auth"].except("extra")
+      redirect_to( new_user_registration_url )
+    end
+  end
+
+def yahoo
+Rails.logger.debug( request.env["omniauth.auth"].to_s )
+    @user = User.find_for_yahoo_oauth(request.env["omniauth.auth"], current_user)
+    if ( @user.persisted? )
+      sign_in_and_redirect( @user, { :event => :authentication } ) 
+      set_flash_message( :notice, :success, { :kind => "YAHoo" } ) if ( is_navigational_format? )
+    else
+      session["devise.yahoo_data"] = request.env["omniauth.auth"].except("extra")
+      redirect_to( new_user_registration_url )
+    end
+  end
+
 end

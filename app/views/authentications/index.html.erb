@@ -1,4 +1,6 @@
 <div id="contenedor">
+
+ <title>Sign In Providers</title>
 <% if @authentications %>
   <% unless @authentications.empty? %>
     <p><strong>You can sign in to this account using:</strong></p>
@@ -14,13 +16,14 @@
       <div class="clear"></div>
     </div>
   <% end %>
+  <div>
   <p><strong>Add another service to sign in with:</strong></p>
+  </div>
+
 <% else %>
   <p><strong>Sign in through one of these services:</strong></p>
-
-
 <% end %>
-
+<div id='frame1'>
 <a href="users/auth/facebook" class="auth_provider">
   <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
   Facebook
@@ -37,5 +40,21 @@
   <%= image_tag "openid_64.png", :size => "64x64", :alt => "OpenID" %>
   OpenID
 </a>
+<a href="users/auth/github" class="auth_provider">
+  <%= image_tag "github_64.png", :size => "64x64", :alt => "github" %>
+  Github
+</a>
+<a href="users/auth/linkedin" class="auth_provider">
+  <%= image_tag "linkedin_64.png", :size => "64x64", :alt => "linkedin" %>
+  Linkedin
+</a>
+<a href="users/auth/yahoo" class="auth_provider">
+  <%= image_tag "yahoo_64.png", :size => "64x64", :alt => "yahoo" %>
+  Yahoo
+</a>
 <div class="clear"></div>
+</div>
+<div>
+<%= link_to "Home", home_path %>
+</div
 </div>

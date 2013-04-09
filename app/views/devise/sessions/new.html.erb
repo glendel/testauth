@@ -16,6 +16,27 @@
 
   <div><%= f.submit "Sign in" %></div>
 <% end %>
-
+   <div> <h2>Sign in with:</h2></div>
+     <div id='frame2'>
+          <a href="auth/facebook" class="auth_provider_home">
+          <%= image_tag "facebook_32.png", :size => "32x32", :alt => "Facebook" %> 
+          </a>
+          <a href="auth/twitter" class="auth_provider_home">
+          <%= image_tag "twitter_32.png", :size => "32x32", :alt => "twitter" %> 
+          </a>
+          <a href="auth/google_oauth2" class="auth_provider_home">
+          <%= image_tag "google_oauth2_32.png", :size => "32x32", :alt => "google_oauth2" %> 
+          </a>
+          <a href="auth/github" class="auth_provider_home">
+          <%= image_tag "github_32.png", :size => "32x32", :alt => "github" %> 
+          </a>
+          <a href="auth/open_id" class="auth_provider_home">
+          <%= image_tag "open_id_32.png", :size => "32x32", :alt => "open_id" %> 
+          </a>
+          <a href="auth/linkedin" class="auth_provider_home">
+          <%= image_tag "linkedin_32.png", :size => "32x32", :alt => "linkedin" %> 
+          </a>
+	<div class="clear"></div>
+    </div>
 <%= render "devise/shared/links" %>
 </div>

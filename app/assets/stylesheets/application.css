@@ -5,11 +5,19 @@ body {
   font-size: 13px;
   line-height: 18px;
 }
-
+#frame1 {
+box-shadow: 0px 0px 25px black;
+background:#333333;
+}
+#frame2 {
+width:200px;
+box-shadow: 0px 0px 25px black;
+background:#333333;
+}
 #contenedor {
   width:800px;
   background:white;
-  box-shadow: 0px 0px 25px black;
+  box-shadow: 0px 0px 50px black;
   margin:auto;
   padding:25px;
   font-size: 120%;
@@ -86,4 +94,72 @@ div {
     font-size: 12px;
     list-style: square;
   }
+}
+.authentications {
+  margin-bottom: 30px;
+}
+
+.authentication {
+  width: 500px;
+  background-color: #EEE;
+  border: solid 1px #999;
+  padding: 5px 10px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  position: relative;
+  margin-right: 10px;
+}
+
+.authentication .remove {
+  text-decoration: none;
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  color: #333;
+  padding: 2px 4px;
+  font-size: 10px;
+}
+
+.authentication .remove:hover {
+  color: #CCC;
+  background-color: #777;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+}
+
+.authentication img {
+  float: left;
+  margin-right: 10px;
+}
+
+.authentication .provider {
+  font-weight: bold;
+}
+
+.authentication .uid {
+  color: #666;
+  font-size: 11px;
+}
+
+.auth_provider img {
+  display: block;
+}
+
+.auth_provider {
+  float: right;
+  text-decoration: none;
+  margin-right: 20px;
+  text-align: right;
+  margin-bottom: 10px;
+}
+.clear
+{
+clear:both;
+}
+.auth_provider_home {
+  float: left;
+  text-decoration: none;
+  margin-right: 10px;
+  text-align: center;
+  margin-bottom: 10px;
 }
