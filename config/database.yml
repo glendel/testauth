@@ -15,7 +15,7 @@ development:
   database: testauth_development
   pool: 5
   username: root
-  password: 1234abcd
+  password: juan2012
   socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -28,7 +28,7 @@ test:
   database: testauth_test
   pool: 5
   username: root
-  password: 1234abcd
+  password: juan2012
   socket: /var/run/mysqld/mysqld.sock
 
 production:
@@ -38,5 +38,5 @@ production:
   database: testauth_production
   pool: 5
   username: root
-  password: 1234abcd
+  password: juan2012
   socket: /var/run/mysqld/mysqld.sock
