@@ -1,4 +1,4 @@
-
+<div id="contenedor">
 <% if @authentications %>
   <% unless @authentications.empty? %>
     <p><strong>You can sign in to this account using:</strong></p>
@@ -21,20 +21,21 @@
 
 <% end %>
 
+<a href="users/auth/facebook" class="auth_provider">
+  <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
+  Facebook
+</a>
 <a href="users/auth/twitter" class="auth_provider">
   <%= image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter" %>
   Twitter
 </a>
-<a href="/auth/facebook" class="auth_provider">
-  <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
-  Facebook
-</a>
-<a href="/auth/google_apps" class="auth_provider">
+<a href="users/auth/google_apps" class="auth_provider">
   <%= image_tag "google_oauth2_64.png", :size => "64x64", :alt => "Google" %>
   Google
 </a>
-<a href="/auth/open_id" class="auth_provider">
+<a href="users/auth/open_id" class="auth_provider">
   <%= image_tag "openid_64.png", :size => "64x64", :alt => "OpenID" %>
   OpenID
 </a>
 <div class="clear"></div>
+</div>

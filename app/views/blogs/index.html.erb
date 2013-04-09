@@ -1,29 +1,23 @@
+<div id="contenedor">
+
 <h1>Listing blogs</h1>
 
-<table>
-  <tr>
-    <th>Picture</th>
-    <th>Name</th>
-    <th>Birddate</th>
-    <th>Comment</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
 <% @blogs.each do |blog| %>
-  <tr>
-    <td><%= blog.picture %></td>
-    <td><%= blog.name %></td>
-    <td><%= blog.birddate %></td>
-    <td><%= blog.comment %></td>
-    <td><%= link_to 'Show', blog %></td>
-    <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
-    <td><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+
+<hr />
+
+	<div class="entrada">
+		<h1><%= blog.name %></h1>
+		<h2><%= blog.picture %></h2>
+		<h2><%= blog.birddate %></h2>
+		<p><%= blog.comment%> </p>
+		<p><%= link_to 'Show', blog %> -  <%= link_to 'Edit', edit_blog_path(blog) %> - <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+	</div>
+
+
 <% end %>
-</table>
 
 <br />
 
 <%= link_to 'New Blog', new_blog_path %>
+</div>
