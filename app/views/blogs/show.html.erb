@@ -1,8 +1,22 @@
+<div id='contenedor'>
+
+<title>show blog</title>
+
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Picture:</b>
-  <%= @blog.picture %>
+  <b>Posted by:</b>
+  <%= @blog.user.login %>
+</p>
+
+<p>
+  <b>Picture:</br>
+  <%= image_tag @blog.picture_url(:thumb_1).to_s %><br />
+
+  <% if (@blog.picture.to_s == '/assets//assets/default.jpg_default.jpg') %>
+  <% else %>
+  <%= link_to 'Real size', @blog.picture_url %>
+  <% end %>
 </p>
 
 <p>
@@ -11,7 +25,7 @@
 </p>
 
 <p>
-  <b>Birddate:</b>
+  <b>Post date:</b>
   <%= @blog.birddate %>
 </p>
 
@@ -22,5 +36,6 @@
 
 
 <%= link_to 'Edit', edit_blog_path(@blog) %> |
-<%= link_to 'Back', blogs_path %>
+<%= link_to 'Back', blogs_path %> |
 <%= link_to "Home", home_path %>
+</div>

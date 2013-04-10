@@ -15,9 +15,12 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
+Rails.logger.debug( 'inside show' )
     @blog = Blog.find(params[:id])
-
-    respond_to do |format|
+    #@user_post = User.where({:id => @blog.user_id}).first
+    #@user_post = @blog.user
+    
+      respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @blog }
     end
@@ -42,8 +45,9 @@ class BlogsController < ApplicationController
   # POST /blogs
   # POST /blogs.json
   def create
-    @blog = Blog.new(params[:blog])
-
+    #@blog = Blog.new(params[:blog])
+    @blog = current_user.blogs.create(params[:blog])
+ 
     respond_to do |format|
       if @blog.save
         format.html { redirect_to @blog, notice: 'Blog was successfully created.' }

@@ -22,6 +22,7 @@ gem 'omniauth-linkedin'
 gem 'thin'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'mini_magick'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -10,9 +10,10 @@ box-shadow: 0px 0px 25px black;
 background:#333333;
 }
 #frame2 {
-width:200px;
+width:300px;
 box-shadow: 0px 0px 25px black;
 background:#333333;
+margin: right;
 }
 #contenedor {
   width:800px;
@@ -160,6 +161,5 @@ clear:both;
   float: left;
   text-decoration: none;
   margin-right: 10px;
-  text-align: center;
   margin-bottom: 10px;
 }

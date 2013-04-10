@@ -1,4 +1,5 @@
-<%= form_for(@blog), :html => {:multipart => true} do |f| %>
+<div id='contenedor'>
+<%= form_for @blog, :html => {:multipart => true} do |f| %>
   <% if @blog.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
@@ -12,9 +13,19 @@
   <% end %>
 
   <div class="field">
-    <%= image_tag(@blog.picture_url) if @blog.picture? %>
-    <%= f.file_field :picture %><br />
+        <%= f.label :Picture %><br />
+    <%= image_tag (@blog.picture_url(:thumb_1)) if @blog.picture? %><br />
+    <%= f.file_field :picture %> 
+    <label>or a picture's URL:</label>
+    <%= f.text_field :remote_picture_url %> <br />
+    <%= f.hidden_field :picture_cache %>
   </div>
+  <p>
+    <label>
+      <%= f.check_box :remove_picture %>
+      Remove picture
+    </label>
+  </p>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
@@ -31,3 +42,4 @@
     <%= f.submit %>
   </div>
 <% end %>
+</div>
