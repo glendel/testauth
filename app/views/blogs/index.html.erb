@@ -10,8 +10,8 @@
                 <h4>Post by: <%= blog.user.login%></h4>
 		<h5>Blog name: <%= blog.name %></h5>
 		<%= image_tag blog.picture_url(:thumb_2).to_s %>
-		<p>Post date: <%= blog.birddate %></p>
-		<p>comment: <%= blog.comment%> </p>
+		<p>Post date: <%= blog.created_at %></p>
+		<p>Content: <%= blog.content%> </p>
 		<p><%= link_to 'Show', blog %> -  <%= link_to 'Edit', edit_blog_path(blog) %> - <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></p>
 	</div>
 

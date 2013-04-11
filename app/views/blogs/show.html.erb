@@ -26,14 +26,18 @@
 
 <p>
   <b>Post date:</b>
-  <%= @blog.birddate %>
+  <%= @blog.created_at %>
 </p>
 
 <p>
-  <b>Comment:</b>
-  <%= @blog.comment %>
+  <b>Content:</b>
+  <%= @blog.content %>
 </p>
+<div id='contendor_2'>
 
+<%= render :template => "comments/index", :locals => { :blog => @blog } %>
+
+</div>
 
 <%= link_to 'Edit', edit_blog_path(@blog) %> |
 <%= link_to 'Back', blogs_path %> |
