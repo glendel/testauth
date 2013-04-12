@@ -16,7 +16,7 @@ class BlogsController < ApplicationController
   # GET /blogs/1.json
   def show
 Rails.logger.debug( 'inside show' )
-    $blog_id = params[:id]
+    
     @comments = Comment.where(:blog_id => params[:id])
     @blog = Blog.find(params[:id])
     #@user_post = User.where({:id => @blog.user_id}).first

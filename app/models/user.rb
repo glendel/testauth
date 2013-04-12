@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_many :authentications
-  has_many :blogs, :include => :comments
+  has_many :blogs
   has_many :comments
 
   # Include default devise modules. Others available are:
