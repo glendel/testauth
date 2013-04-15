@@ -34,11 +34,9 @@
   <%= @blog.content %>
 </p>
 <div id='contendor_2'>
-
 <%= render :template => "comments/index", :locals => { :blog => @blog } %>
-
 </div>
-
+<br />
 <%= link_to 'Edit', edit_blog_path(@blog) %> |
 <%= link_to 'Back', blogs_path %> |
 <%= link_to "Home", home_path %>

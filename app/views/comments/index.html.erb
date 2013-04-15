@@ -1,27 +1,21 @@
-<h1>Listing comments</h1>
+<div id='contenedor3'>
+<h3>Listing comments</h3>
 
-<table>
-  <tr>
-    <th>User</th>
-    <th>Blog</th>
-    <th>Content</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
 <% @comments.each do |comment| %>
+<hr />
   <tr>
-    <td><%= comment.user_id %></td>
-    <td><%= comment.blog_id %></td>
-    <td><%= comment.content %></td>
-    <td><%= link_to 'Show', blog_comment_path( comment ) %></td>
-    <td><%= link_to 'Edit', edit_blog_comment_path(comment) %></td>
-    <td><%= link_to 'Destroy', blog_comment_path( comment ), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  	<div class="entrada">
+    <h3 >Commented by: <%= comment.blog.user.login %></h3>
+    <p >Comment: <%= comment.content %></p>
+    <p><%= link_to 'Show', blog_comment_path( comment ) %> -
+    <%= link_to 'Edit', edit_blog_comment_path(comment) %> -
+    <%= link_to 'Destroy', blog_comment_path( comment ), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  	</div>
   </tr>
+  
 <% end %>
-</table>
-
-<br />
-
+<hr />
 <%= link_to 'New Comment', new_blog_comment_path( @blog ) %>
+</div>
+
