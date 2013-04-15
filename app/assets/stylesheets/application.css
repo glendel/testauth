@@ -15,6 +15,20 @@ box-shadow: 0px 0px 25px black;
 background:#333333;
 margin: right;
 }
+#cajacontenido {
+  width:750px;
+  background:white;
+  box-shadow: 0px 0px 10px black;
+  margin:auto;
+  padding:5px;
+  font-size: 70%;
+}#cajacontenido2 {
+  width:600px;
+  background:white;
+  box-shadow: 0px 0px 10px black;
+  padding:5px;
+  font-size: 70%;
+}
 #contenedor {
   width:800px;
   background:white;

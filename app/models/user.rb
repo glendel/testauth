@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :authentications
   has_many :blogs
-  #has_many :comments, :through => :blogs
+  has_many :comments
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

@@ -17,8 +17,8 @@ class BlogsController < ApplicationController
   def show
 Rails.logger.debug( 'inside show' )
     #@comments = Comment.all
-    @comments = Comment.where(:blog_id => params[:id])
     @blog = Blog.find(params[:id])
+    @comments = @blog.comments#Comment.where(:blog_id => params[:id])
     #@user_post = User.where({:id => @blog.user_id}).first
     #@user_post = @blog.user
     

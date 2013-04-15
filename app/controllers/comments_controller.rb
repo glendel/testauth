@@ -3,8 +3,7 @@ class CommentsController < ApplicationController
   # GET /comments.json
   def index
     @comments = Comment.all
-    @blog = Blog.find(params[:id])
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @comments }
@@ -37,6 +36,7 @@ class CommentsController < ApplicationController
   # GET /comments/1/edit
   def edit
     @comment = Comment.find(params[:id])
+    @blog = Blog.find(params[:blog_id])
   end
 
   # POST /comments
@@ -45,7 +45,10 @@ class CommentsController < ApplicationController
     #@comment = Comment.new(params[:comment])
      @blog = Blog.find(params[:blog_id])
      @comment = @blog.comments.create(params[:comment])
-
+     #@comment = current_user.comments.create(params[:comment])
+     @comment.user = current_user
+     #@comment.blog_id = @blog.id
+ 
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @blog, notice: 'Comment was successfully created.' }
@@ -64,7 +67,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to blog_path(@comment.blog_id), notice: 'Comment was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -80,7 +83,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to comments_url }
+      format.html { redirect_to blog_path( @comment.blog_id) }
       format.json { head :no_content }
     end
   end

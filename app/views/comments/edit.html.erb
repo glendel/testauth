@@ -1,6 +1,8 @@
+<div id='contenedor'>
 <h1>Editing comment</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @comment %> |
-<%= link_to 'Back', comments_path %>
+<%= link_to 'Show', blog_comment_path( @comment.blog_id, @comment)%> |
+<%= link_to 'Back', blog_path( @comment.blog_id) %>
+</div>

@@ -1,8 +1,11 @@
+<div id='contenedor'>
+
+
 <p id="notice"><%= notice %></p>
 
 <p>
   <h4>User:</h4>
-  <%= @comment.blog.user.login %>
+  <%= @comment.user.login %>
 
   <h4>Blog:</h4>
   <%= @comment.blog_id %>
@@ -12,5 +15,7 @@
 </p>
 
 
-<%= link_to 'Edit', edit_comment_path(@comment) %> |
-<%= link_to 'Back', comments_path %>
+<%= link_to 'Edit', edit_blog_comment_path( @comment.blog_id, @comment) %> |
+<%= link_to 'Back', blog_path(@comment.blog_id) %>
+
+</div>

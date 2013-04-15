@@ -29,11 +29,12 @@
   <%= @blog.created_at %>
 </p>
 
-<p>
-  <b>Content:</b>
+<div id='cajacontenido'>
+  <h3>Content:</h3>
   <%= @blog.content %>
-</p>
-<div id='contendor_2'>
+</div>
+<br />
+<div>
 <%= render :template => "comments/index", :locals => { :blog => @blog } %>
 </div>
 <br />
