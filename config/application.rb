@@ -1,5 +1,5 @@
 require File.expand_path('../boot', __FILE__)
-
+#OpenSS::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 require 'rails/all'
 # keys facebook
 ENV['FACEBOOK_KEY'] = '572459022778488'
@@ -19,6 +19,7 @@ ENV["LINKEDIN_SECRET"] = 'S4SI2JZZFcN2kc7X'
 # yahoo
 ENV["YAHOO_KEY"] = 'dj0yJmk9amNTS1gxSUI0VnRrJmQ9WVdrOU0xcGhUWFJLTldrbWNHbzlNVE14TkRVeU9EYzJNZy0tJnM9Y29uc3VtZXJzZWNyZXQmeD03OA--'
 ENV["YAHOO_SECRET"] = '04caa20991245ab4a29c92da4ba86fb79ad15a7d'
+
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line

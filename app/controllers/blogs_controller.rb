@@ -4,9 +4,8 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all
-
-    respond_to do |format|
+    @blogs = Blog.search(params[:search]).page(params[:page]).per(2)
+      respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @blogs }
     end

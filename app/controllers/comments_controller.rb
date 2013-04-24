@@ -1,8 +1,10 @@
 class CommentsController < ApplicationController
+ before_filter :authenticate_user!
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    @blog = Blog.find(params[:blog_id])
+    @comments = @blog.comments
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,7 +1,5 @@
 <div id='contenedor'>
 
-<title>show blog</title>
-
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -34,7 +32,7 @@
   <%= @blog.content %>
 </div>
 <br />
-<div>
+<div >
 <%= render :template => "comments/index", :locals => { :blog => @blog } %>
 </div>
 <br />

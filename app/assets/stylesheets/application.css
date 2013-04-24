@@ -5,40 +5,58 @@ body {
   font-size: 13px;
   line-height: 18px;
 }
+#footer {
+ box-shadow: 0px 0px 50px black;
+ background:#333333;
+ width:750px;
+ margin:auto;
+ color: white;
+ padding: 0px;
+}
 #frame1 {
-box-shadow: 0px 0px 25px black;
-background:#333333;
+ box-shadow: 0px 0px 25px black;
+ background:#333333;
 }
 #frame2 {
-width:300px;
-box-shadow: 0px 0px 25px black;
-background:#333333;
-margin: right;
+ width:300px;
+ box-shadow: 0px 0px 25px black;
+ background:#333333;
+ margin: right;
 }
 #cajacontenido {
-  width:750px;
+  width:700px;
   background:white;
   box-shadow: 0px 0px 10px black;
   margin:auto;
   padding:5px;
   font-size: 70%;
-}#cajacontenido2 {
-  width:600px;
+}
+#cajacontenido2 {
+  width:650px;
   background:white;
   box-shadow: 0px 0px 10px black;
   padding:5px;
   font-size: 70%;
 }
+#container {
+  width:750px;
+  background-image:url('1501321267.jpg');
+  box-shadow: 0px 0px 50px black;
+  font-size: 120%;
+  color: white;
+  margin:auto;
+}
 #contenedor {
-  width:800px;
+  width:700px;
   background:white;
   box-shadow: 0px 0px 50px black;
   margin:auto;
-  padding:25px;
   font-size: 120%;
+  color: black;
+  padding:25px;  
 }
 #contenedor2 {
-  width:750px;
+  width:650px;
   background:white;
   box-shadow: 0px 0px 50px black;
   margin:auto;
@@ -46,7 +64,7 @@ margin: right;
   font-size: 120%;
 }
 #contenedor3 {
-  width:700px;
+  width:650px;
   background:white;
   box-shadow: 0px 0px 10px black;
   margin:auto;
@@ -54,14 +72,13 @@ margin: right;
   font-size: 120%;
 }
 #user_nav{
-	width:850px;
-	background:#333333;
-	color: white;
-	box-shadow: 0px 0px 50px black;
-	margin:auto;
-	text-align: right;
-	font-size: 120%;
-	
+ width:750px;
+ background:#333333;
+ color: white;
+ box-shadow: 0px 0px 50px black;
+ margin:auto;
+ text-align: right;
+ font-size: 120%;
 }
 
 p, ol, ul, td {

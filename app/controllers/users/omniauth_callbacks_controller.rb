@@ -1,6 +1,9 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
 def twitter
+if user_signed_in?
+    redirect_to blogs_path
+    else
 @user = User.find_for_twitter_oauth(request.env["omniauth.auth"], current_user)
      
      if ( @user.persisted? )
@@ -10,7 +13,7 @@ def twitter
        session["devise.twitter_data"] = request.env["omniauth.auth"].except("extra")
        redirect_to( new_user_registration_url )
      end
-    
+  end  
   end
   
 def facebook

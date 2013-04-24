@@ -1,10 +1,20 @@
 <title> welcome </title>
-<div id="contenedor">
-<h1>WELCOME</h1>
-<h2>Page of William</h2>
-<%= link_to "Go to Blogs", blogs_path %>
-   <h2> Sign in with:</h2><br />
-     <div id='frame2'>
+<div id="container">
+ <div style="width:50px;height:500px;float:left"></div>
+   <div id='contenido', style='height:500px;width:650px;float:left' >
+       <h1><%=t :WELCOME%></h1>
+       <h2>Page of William</h2>
+       <%=t :hello_world %>
+       <%= link_to "Go to Blogs", blogs_path %>
+       <br />   
+    </div>
+<div style="width:50px;height:500px;float:left"></div>
+<div class="clear"></div>
+</div>
+<div id='footer' >
+   
+     <div style="width:150px;float:left;text-align:center"><h2> Sign in with:</h2></div>
+          <div id='frame0' style="float:left;padding-top:10px">
           <a href="users/auth/facebook" class="auth_provider_home">
           <%= image_tag "facebook_32.png", :size => "32x32", :alt => "Facebook" %> 
           </a>
@@ -26,6 +36,6 @@
 	  <a href="users/auth/yahoo" class="auth_provider_home">
           <%= image_tag "yahoo_32.png", :size => "32x32", :alt => "yahoo" %> 
           </a>
-	<div class="clear"></div>
-    </div>
+          </div>
+          <div class="clear"></div>
 </div>
