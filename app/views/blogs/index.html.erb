@@ -1,20 +1,17 @@
+<div id="blogs">
 <div id="contenedor">
-<%= form_tag search_blogs_path, :method => 'get' , :id => "searchBlogs" do -%>
+<%= form_tag( blogs_path, { :method => 'get', :id => 'searchBlogs', :onSubmit => 'return(searchFormHandler( this ));' } ) do -%>
   <h5>
     <%=t '.Search blogs that conteain' %><%= text_field_tag "search", params[:search] %>
     <%= submit_tag "Search", :name => nil %>
   </h5>
 <%- end -%>
-<div id="results"><%= render :template => "blogs/search", :locals => { :blog => @blog } %></div>
-<!--<%- if ( request.xhr? ) -%>
-  I was called by an AJAX request!
-<div id="results">Hola Mundo "William"</div>
-<%- else -%>
-  I was called by a normal request!
-<%= render :template => "blogs/search", :locals => { :blog => @blog } %>
-<%- end -%>-->
-
+<h1><%=t '.Listing blogs' %></h1>
+<div id="results">
+<%= render :partial => "blogs/search", :locals => { :blog => @blog } -%>
+</div>
 <br />
 <%= link_to 'New Blog', new_blog_path %> |
 <%= link_to "Home", home_path %> 
+</div>
 </div>

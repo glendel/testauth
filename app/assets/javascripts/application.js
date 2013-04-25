@@ -15,9 +15,9 @@
 //= require_tree .
 
 /********************
- * processAjaxLinks
+ * processAjax
  ********************/
-function processAjaxLinks( objLnk, dataType ) { // eventObject
+function processAjax( objLnk, data, suscces) { // eventObject
   if ( typeof( objLnk.which ) !== 'undefined' ) { // Esto es para los a[william="true"]
     objLnk = this;
     //var dataType = objLnk.datatype; NO SE PUEDE
@@ -28,13 +28,11 @@ function processAjaxLinks( objLnk, dataType ) { // eventObject
   if ( typeof( dataType ) !== 'string' ) { dataType = 'html'; }
   
   var options = {
-    url : objLnk.href,
-    data : {},
+    url : objLnk,
+    data : data,
     cache : false,
-    dataType : dataType,
-    success : function( data, textStatus, jqXHR ) {
-      jQuery( '#results' ).html( data );
-    },
+    dataType : 'html',
+    success : suscces,
     error : function( jqXHR, textStatus, errorThrown ) {
       console.log( textStatus + ' : ' + errorThrown );
     }
@@ -45,15 +43,36 @@ function processAjaxLinks( objLnk, dataType ) { // eventObject
   return( false );
 }
 
-$(document).ready(function( $ ) {
-jQuery("#searchBlogs input").keyup(function() {
-    jQuery.get($("#searchBlogs").attr("action"), $("#searchBlogs").serialize(), function( data, textStatus, jqXHR ) {
-      jQuery( '#results' ).html( data );}, "html");
-    return false;
+function onSuccessBlogList( data, textStatus, jqXHR ) {
+  jQuery( '#results' ).html( data );
+}
+
+function searchFormHandler( objFrm ) {
+  processAjax( objFrm.action, jQuery( objFrm ).serialize(), onSuccessBlogList );
+  return( false );
+}
+
+jQuery(document).ready(function( $ ) {
+  var jForm = jQuery( '#searchBlogs' );
+  
+  jQuery( '#search' ).keyup( function( eventObject ) {
+    processAjax( jForm.attr( 'action' ), { search : this.value }, onSuccessBlogList );
+    return( false );
   });
+  
+  jQuery( '#results' ).on( 'click', '.pagination a', function( data, textStatus, jqXHR ) {
+    processAjax( this.href, null, onSuccessBlogList );
+    return( false );
+  });
+  
+  jForm.on( 'submit', function( data, textStatus, jqXHR ) {
+    processAjax( this.action, jForm.serialize(), onSuccessBlogList );
+    return( false );
+  } );
 });
+
 //jQuery( document ).ready( function( $ ) {
-  //jQuery( '[william="true"]' ).bind( 'click', {}, processAjaxLinks );
+  //jQuery( '[william="true"]' ).bind( 'click', {}, processAjax );
 //  jQuery( 'ul > li' ).on( 'click', 'a[enableAjax="true"]', {}, processAjaxLinks );
 //} );
 
