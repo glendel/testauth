@@ -9,10 +9,15 @@ class Blog < ActiveRecord::Base
   #  self.search
   #=======================================
   def self.search(search)
+      Rails.logger.debug( 'hello from search blogs' )
       unless (search.nil? || search.empty?)
+	  Rails.logger.debug( 'search != nil and empty' )
         return (Blog.where('`name` LIKE ? OR `content` LIKE ?', "%#{search}%", "%#{search}%"))
+
       else
+          Rails.logger.debug( 'search nill' )
         return (Blog.scoped)
+
       end
   rescue Exception => error
    return (Blog.all)

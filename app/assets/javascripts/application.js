@@ -45,7 +45,15 @@ function processAjaxLinks( objLnk, dataType ) { // eventObject
   return( false );
 }
 
-jQuery( document ).ready( function( $ ) {
+$(document).ready(function( $ ) {
+jQuery("#searchBlogs input").keyup(function() {
+    jQuery.get($("#searchBlogs").attr("action"), $("#searchBlogs").serialize(), function( data, textStatus, jqXHR ) {
+      jQuery( '#results' ).html( data );}, "html");
+    return false;
+  });
+});
+//jQuery( document ).ready( function( $ ) {
   //jQuery( '[william="true"]' ).bind( 'click', {}, processAjaxLinks );
-  jQuery( 'ul > li' ).on( 'click', 'a[enableAjax="true"]', {}, processAjaxLinks );
-} );
+//  jQuery( 'ul > li' ).on( 'click', 'a[enableAjax="true"]', {}, processAjaxLinks );
+//} );
+

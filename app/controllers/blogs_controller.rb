@@ -13,10 +13,11 @@ class BlogsController < ApplicationController
       format.json { render json: @blogs }
     end
   end
-# GET /blogs
+  # GET /blogs
   # GET /blogs.json
   def search
     @blogs = Blog.search(params[:search]).page(params[:page]).per(2)
+
       respond_to do |format|
       format.html { # search.html.erb
         layout = ( ( request.xhr? ) ? false : 'application' )
