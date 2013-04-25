@@ -9,7 +9,7 @@
 <body>
 
 <div id="user_nav">
-  <h4 class="notice"><%= notice %></h4> <h4 class="alert"><%= alert %></h4>
+  <h4 class="notice" ><%= notice %></h4> <h4 class="alert" style="text-align: left"><%= alert %></h4>
   <p><%= l Time.now, :format => :default %></p>
   <%= link_to 'Español', '?locale=es' %> | <%= link_to 'English', '?locale=en' %> <br />
   <% if user_signed_in? %>
@@ -19,6 +19,7 @@
     <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
   <% end %>
 </div>
+
 <%= yield %>
 
 </body>

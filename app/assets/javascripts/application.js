@@ -13,3 +13,39 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+/********************
+ * processAjaxLinks
+ ********************/
+function processAjaxLinks( objLnk, dataType ) { // eventObject
+  if ( typeof( objLnk.which ) !== 'undefined' ) { // Esto es para los a[william="true"]
+    objLnk = this;
+    //var dataType = objLnk.datatype; NO SE PUEDE
+    var dataType = objLnk.getAttribute( 'datatype' );
+    //var dataType = jQuery( this ).attr( 'datatype' );
+    //var dataType = jQuery( this ).data( 'type' );
+  }
+  if ( typeof( dataType ) !== 'string' ) { dataType = 'html'; }
+  
+  var options = {
+    url : objLnk.href,
+    data : {},
+    cache : false,
+    dataType : dataType,
+    success : function( data, textStatus, jqXHR ) {
+      jQuery( '#results' ).html( data );
+    },
+    error : function( jqXHR, textStatus, errorThrown ) {
+      console.log( textStatus + ' : ' + errorThrown );
+    }
+  };
+  console.log(options);
+  jQuery.ajax( options );
+  
+  return( false );
+}
+
+jQuery( document ).ready( function( $ ) {
+  //jQuery( '[william="true"]' ).bind( 'click', {}, processAjaxLinks );
+  jQuery( 'ul > li' ).on( 'click', 'a[enableAjax="true"]', {}, processAjaxLinks );
+} );

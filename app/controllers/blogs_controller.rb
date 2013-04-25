@@ -6,11 +6,25 @@ class BlogsController < ApplicationController
   def index
     @blogs = Blog.search(params[:search]).page(params[:page]).per(2)
       respond_to do |format|
-      format.html # index.html.erb
+      format.html { # test1.html.erb
+        layout = ( ( request.xhr? ) ? false : 'application' )
+        render( { :layout => layout } )
+      }
       format.json { render json: @blogs }
     end
   end
-
+# GET /blogs
+  # GET /blogs.json
+  def search
+    @blogs = Blog.search(params[:search]).page(params[:page]).per(2)
+      respond_to do |format|
+      format.html { # search.html.erb
+        layout = ( ( request.xhr? ) ? false : 'application' )
+        render( { :layout => layout } )
+      }
+      format.json { render json: @blogs }
+    end
+  end
   # GET /blogs/1
   # GET /blogs/1.json
   def show

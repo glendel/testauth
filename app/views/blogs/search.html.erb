@@ -1,8 +1,24 @@
 
-<%= form_tag(blogs_path,:method => 'get') do -%>
-  <h5>
-    <%=t '.Search blogs that conteain' %><%= text_field_tag "search", params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-  </h5>
-<%- end -%>
+<h1><%=t '.Listing blogs' %></h1><%= paginate @blogs,:outer_window => 3  %><br />
+<div id="contenedor2">
+<% @blogs.each do |blog| %>
 
+<hr />
+
+	<div class="entrada">
+                <h4><%=t '.Post by' %><%= blog.user.login%></h4>
+		<h5><%=t '.Blog name' %><%= blog.name %></h5>
+		<%= image_tag blog.picture_url(:thumb_2).to_s %>
+		<p><%=t '.Post date' %><%= blog.created_at %></p>
+		<p><%=t '.Content' %><%= blog.content%> </p>
+		<p><%= link_to 'Show', blog %> -  <%= link_to 'Edit', edit_blog_path(blog) %> - 
+                   <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+	</div>
+
+
+<% end %>
+
+<br />
+</div>
+<br />
+<%= paginate @blogs,:outer_window => 3  %>
