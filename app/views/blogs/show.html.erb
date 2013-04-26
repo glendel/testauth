@@ -33,7 +33,7 @@
 </div>
 <br />
 <div >
-<%= render :template => "comments/index", :locals => { :blog => @blog } %>
+<%= render :template => "comments/index", :locals => { :blog => @blog, :comments => @comments } %>
 </div>
 <br />
 <%= link_to 'Edit', edit_blog_path(@blog) %> |

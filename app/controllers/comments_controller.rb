@@ -4,8 +4,8 @@ class CommentsController < ApplicationController
   # GET /comments.json
   def index
     @blog = Blog.find(params[:blog_id])
-    @comments = @blog.comments
-
+    @comments = @blog.comments.search(params[:searchC])
+    @comments = @comments.page(params[:page]).per(3)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @comments }

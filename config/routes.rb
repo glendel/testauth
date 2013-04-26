@@ -1,9 +1,6 @@
 Testauth::Application.routes.draw do
   resources :blogs do
-    collection do
-      get 'search'
-    end
-    resources :comments
+     resources :comments
   end
 
   resources :authentications

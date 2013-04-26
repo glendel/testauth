@@ -47,21 +47,41 @@ function onSuccessBlogList( data, textStatus, jqXHR ) {
   jQuery( '#results' ).html( data );
 }
 
+function onSuccessCommentList( data, textStatus, jqXHR ) {
+  jQuery( '#resultsC' ).html( data );
+}
+
 function searchFormHandler( objFrm ) {
   processAjax( objFrm.action, jQuery( objFrm ).serialize(), onSuccessBlogList );
   return( false );
 }
 
+function searchFormHandler2( objFrm ) {
+  processAjax( objFrm.action, jQuery( objFrm ).serialize(), onSuccessCommentList );
+  return( false );
+}
+
 jQuery(document).ready(function( $ ) {
   var jForm = jQuery( '#searchBlogs' );
+  var jFormC = jQuery( '#searchComments' );
   
   jQuery( '#search' ).keyup( function( eventObject ) {
     processAjax( jForm.attr( 'action' ), { search : this.value }, onSuccessBlogList );
     return( false );
   });
   
+  jQuery( '#searchC' ).keyup( function( eventObject ) {
+    processAjax( jFormC.attr( 'action' ), { searchC : this.value }, onSuccessCommentList );
+    return( false );
+  });
+  
   jQuery( '#results' ).on( 'click', '.pagination a', function( data, textStatus, jqXHR ) {
     processAjax( this.href, null, onSuccessBlogList );
+    return( false );
+  });
+
+  jQuery( '#resultsC' ).on( 'click', '.pagination a', function( data, textStatus, jqXHR ) {
+    processAjax( this.href, null, onSuccessCommentList );
     return( false );
   });
   

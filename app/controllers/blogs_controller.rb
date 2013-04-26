@@ -34,12 +34,19 @@ class BlogsController < ApplicationController
 Rails.logger.debug( 'inside show' )
     #@comments = Comment.all
     @blog = Blog.find(params[:id])
-    @comments = @blog.comments#Comment.where(:blog_id => params[:id])
+    @comments = @blog.comments.search(params[:searchC])
+    @comments = @comments.page(params[:page]).per(3)
+    #Comment.where(:blog_id => params[:id])
     #@user_post = User.where({:id => @blog.user_id}).first
     #@user_post = @blog.user
     
       respond_to do |format|
-      format.html # show.html.erb
+      format.html { # show.html.erb
+        if ( request.xhr? )
+          render( { :partial => 'comments/searchComment', :layout => false } )
+          return
+        end
+      }
       format.json { render json: @blog }
     end
   end

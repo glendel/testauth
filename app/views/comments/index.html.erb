@@ -1,20 +1,16 @@
 <div id="contenedor3">
 <h3>Listing comments</h3>
-<%- @comments.each do |comment| -%>
-<hr />
-  	<div class="entrada">
-        <p > <b>Commented by: </b><%= comment.user.login %></p>
-        <div id='cajacontenido2' ><p>Post date: <%= comment.created_at %></p>
-        Comment: <%= comment.content %></div>
-        <p><%= link_to 'Show', blog_comment_path( @blog, comment ) %> -
-        <%= link_to 'Edit', edit_blog_comment_path( @blog, comment) %> -
-        <%= link_to 'Destroy', blog_comment_path( @blog, comment ), method: :delete, data: { confirm: 'Are you sure?' } %></p>
-  	</div>
-
+<%= form_tag( [@blog, @comment], { :method => 'get', :id => 'searchComments', :onSubmit => 'return(searchFormHandler2( this ));' } ) do -%>
+  <h5>
+    <%= 'Search comments that conteain ' %><%= text_field_tag "searchC", params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </h5>
 <%- end -%>
-<hr />
-<p><%= link_to 'New Comment', new_blog_comment_path( @blog ) %></p>
+<div id='resultsC'>
+<%= render :partial => "comments/searchComment", :locals => { :blog => @blog, :comments => @comments } -%>
 </div>
+<p><%= link_to 'New Comment', new_blog_comment_path( @blog ) %></p>
+
 
 
 

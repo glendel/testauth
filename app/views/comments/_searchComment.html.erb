@@ -1,0 +1,15 @@
+<h6><%= paginate @comments,:outer_window => 3  %></h6>
+<%- @comments.each do |comment| -%>
+<hr />
+  	<div class="entrada">
+        <p > <b>Commented by: </b><%= comment.user.login %></p>
+        <div id='cajacontenido2' ><p>Post date: <%= comment.created_at %></p>
+        Comment: <%= comment.content %></div>
+        <p><%= link_to 'Show', blog_comment_path( @blog, comment ) %> -
+        <%= link_to 'Edit', edit_blog_comment_path( @blog, comment) %> -
+        <%= link_to 'Destroy', blog_comment_path( @blog, comment ), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  	</div>
+
+<%- end -%>
+<hr />
+<h6><%= paginate @comments,:outer_window => 3  %></h6>
