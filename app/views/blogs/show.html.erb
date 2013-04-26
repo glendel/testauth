@@ -7,13 +7,14 @@
   <%= @blog.user.login %>
 </p>
 
-<p>
+<p id='pictureBlog'>
   <b>Picture:</br>
-  <%= image_tag @blog.picture_url(:thumb_1).to_s %><br />
-
   <% if (@blog.picture.to_s == '/assets//assets/default.jpg_default.jpg') %>
+   <%= image_tag @blog.picture_url(:thumb_1).to_s %><br />
   <% else %>
-  <%= link_to 'Real size', @blog.picture_url %>
+  <%= link_to (@blog.picture_url) do %>
+     <%= image_tag @blog.picture_url(:thumb_1).to_s %>
+  <% end %>
   <% end %>
 </p>
 

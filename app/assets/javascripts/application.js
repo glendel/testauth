@@ -12,7 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require jquery.lightbox-0.5.pack
+//= require jquery.form
+// require_tree .
 
 /********************
  * processAjax
@@ -89,6 +91,7 @@ jQuery(document).ready(function( $ ) {
     processAjax( this.action, jForm.serialize(), onSuccessBlogList );
     return( false );
   } );
+  jQuery('#pictureBlog a').lightBox();
 });
 
 //jQuery( document ).ready( function( $ ) {

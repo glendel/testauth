@@ -15,19 +15,6 @@ class BlogsController < ApplicationController
       format.json { render json: @blogs }
     end
   end
-  # GET /blogs
-  # GET /blogs.json
-  def search
-    @blogs = Blog.search(params[:search]).page(params[:page]).per(2)
-
-      respond_to do |format|
-      format.html { # search.html.erb
-        layout = ( ( request.xhr? ) ? false : 'application' )
-        render( { :layout => layout } )
-      }
-      format.json { render json: @blogs }
-    end
-  end
   # GET /blogs/1
   # GET /blogs/1.json
   def show
@@ -39,7 +26,7 @@ Rails.logger.debug( 'inside show' )
     #Comment.where(:blog_id => params[:id])
     #@user_post = User.where({:id => @blog.user_id}).first
     #@user_post = @blog.user
-    
+    @ulr_img = @blog.picture_url(:thumb_1).to_s
       respond_to do |format|
       format.html { # show.html.erb
         if ( request.xhr? )
