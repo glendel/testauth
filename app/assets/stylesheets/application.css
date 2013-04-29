@@ -85,6 +85,15 @@ body {
   padding:25px;
   font-size: 120%;
 }
+#contenedor_new {
+  width:300px;
+  background:white;
+  box-shadow: 0px 0px 50px black;
+  margin:auto;
+  font-size: 120%;
+  color: black;
+  padding:25px;  
+}
 #user_nav{
  width:750px;
  background:#333333;

@@ -14,6 +14,9 @@
 //= require jquery_ujs
 //= require jquery.lightbox-0.5.pack
 //= require jquery.form
+//= require prototype
+//= require scriptaculous
+//= require modalbox
 // require_tree .
 
 /********************

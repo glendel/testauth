@@ -1,0 +1,35 @@
+<h1>Listing user_forms</h1>
+
+<table>
+  <tr>
+    <th>Fname</th>
+    <th>Lname</th>
+    <th>Birthday</th>
+    <th>Country</th>
+    <th>State</th>
+    <th>City</th>
+    <th>Gender</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @user_forms.each do |user_form| %>
+  <tr>
+    <td><%= user_form.fname %></td>
+    <td><%= user_form.lname %></td>
+    <td><%= user_form.birthday %></td>
+    <td><%= user_form.country %></td>
+    <td><%= user_form.state %></td>
+    <td><%= user_form.city %></td>
+    <td><%= user_form.gender %></td>
+    <td><%= link_to 'Show', user_form %></td>
+    <td><%= link_to 'Edit', edit_user_form_path(user_form) %></td>
+    <td><%= link_to 'Destroy', user_form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User form', new_user_form_path %>

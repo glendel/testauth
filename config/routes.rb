@@ -1,4 +1,7 @@
 Testauth::Application.routes.draw do
+  resources :user_forms
+
+
   resources :blogs do
      resources :comments
   end

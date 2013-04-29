@@ -5,7 +5,11 @@
        <h1><%=t :WELCOME%></h1>
        <h2>Page of William</h2>
        <%=t :hello_world %>
-       <%= link_to "Go to Blogs", blogs_path %>
+       <%- if (user_signed_in?) -%>
+          <%= link_to "Go to Blogs", blogs_path %>
+       <%- else -%>
+          <%= link_to "Go to Blogs", new_user_session_path, :onclick => "Modalbox.show(this.href, {title: 'Welcome to Sign In', width: 400}); return false;" %>
+       <%-end-%>
        <br />   
     </div>
 <div style="width:50px;height:500px;float:left"></div>

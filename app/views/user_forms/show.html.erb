@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Fname:</b>
+  <%= @user_form.fname %>
+</p>
+
+<p>
+  <b>Lname:</b>
+  <%= @user_form.lname %>
+</p>
+
+<p>
+  <b>Birthday:</b>
+  <%= @user_form.birthday %>
+</p>
+
+<p>
+  <b>Country:</b>
+  <%= @user_form.country %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @user_form.state %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @user_form.city %>
+</p>
+
+<p>
+  <b>Gender:</b>
+  <%= @user_form.gender %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_form_path(@user_form) %> |
+<%= link_to 'Back', user_forms_path %>
