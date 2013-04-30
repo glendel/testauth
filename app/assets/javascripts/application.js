@@ -47,25 +47,56 @@ function processAjax( objLnk, data, suscces) { // eventObject
   
   return( false );
 }
-
+/********************
+ * onSuccessBlogList
+ ********************/
 function onSuccessBlogList( data, textStatus, jqXHR ) {
   jQuery( '#results' ).html( data );
 }
-
+/********************
+ * onSuccessCommentList
+ ********************/
 function onSuccessCommentList( data, textStatus, jqXHR ) {
   jQuery( '#resultsC' ).html( data );
 }
-
+/********************
+ * searchFormHandler
+ ********************/
 function searchFormHandler( objFrm ) {
   processAjax( objFrm.action, jQuery( objFrm ).serialize(), onSuccessBlogList );
   return( false );
 }
-
+/********************
+ * searchFormHandler2
+ ********************/
 function searchFormHandler2( objFrm ) {
   processAjax( objFrm.action, jQuery( objFrm ).serialize(), onSuccessCommentList );
   return( false );
 }
+/********************
+ * formHandlerS
+ ********************/
+function formHandlerS( objForm ) {
 
+    var options = {
+
+      beforeSubmit : function( arr, $form, options ) {
+       /* alert( 'I am going to send the form. If you want to do a validation here could be a righht place to do it!' );*/
+      },
+      success : function( data, textStatus, jqXHR, jForm ) {
+        /*alert( 'I already sent the form by AJAX! It is a right place for update the DOM.' );
+        alert( 'Thank you for your registering!' );*/
+      },
+
+    };
+    
+    jQuery( objForm ).ajaxSubmit( options );
+    
+    return( false );
+}
+/********************
+ * jQuery(document)
+ ********************/
 jQuery(document).ready(function( $ ) {
   var jForm = jQuery( '#searchBlogs' );
   var jFormC = jQuery( '#searchComments' );
@@ -94,8 +125,11 @@ jQuery(document).ready(function( $ ) {
     processAjax( this.action, jForm.serialize(), onSuccessBlogList );
     return( false );
   } );
+
   jQuery('#pictureBlog a').lightBox();
+
 });
+
 
 //jQuery( document ).ready( function( $ ) {
   //jQuery( '[william="true"]' ).bind( 'click', {}, processAjax );
