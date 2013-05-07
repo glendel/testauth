@@ -11,13 +11,15 @@
   <h4 class="notice" ><%= notice %></h4> <h4 class="alert" style="text-align: left"><%= alert %></h4>
   <p><%= l Time.now, :format => :default %></p>
   <%= link_to 'Español', '?locale=es' %> | <%= link_to 'English', '?locale=en' %> <br />
-  <% if user_signed_in? %>
+  <span id="connection-options">
+  <% if ( user_signed_in? ) %>
     Signed in as <%= current_user.email %>. Not you?
     <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
   <% else %>
     <%= link_to "Sign up", new_user_registration_path, :onclick => "Modalbox.show(this.href, {title: 'Welcome to Sign Up', width: 400}); return false;"%>    
     or <%= link_to "sign in", new_user_session_path, :onclick => "Modalbox.show(this.href, {title: 'Welcome to Sign In', width: 400}); return false;"%>
   <% end %>
+  </span>
 </div>
 
 <%= yield %>

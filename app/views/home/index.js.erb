@@ -1,0 +1,45 @@
+<title> welcome </title>
+<div id="container">
+ <div style="width:50px;height:500px;float:left"></div>
+   <div id='contenido', style='height:500px;width:650px;float:left' >
+       <h1><%=t :WELCOME%></h1>
+       <h2>Page of William</h2>
+       <%=t :hello_world %>
+       <%- if (user_signed_in?) -%>
+          <%= link_to "Go to Blogs", blogs_path %>
+       <%- else -%>
+          <%= link_to "Go to Blogs", new_user_session_path, :onclick => "Modalbox.show(this.href, {title: 'Welcome to Sign In', width: 400}); return false;" %>
+       <%-end-%>
+       <br />   
+    </div>
+<div style="width:50px;height:500px;float:left"></div>
+<div class="clear"></div>
+</div>
+<div id='footer' >
+   
+     <div style="width:150px;float:left;text-align:center"><h2> Sign in with:</h2></div>
+          <div id='frame0' style="float:left;padding-top:10px">
+          <a href="users/auth/facebook" class="auth_provider_home">
+          <%= image_tag "facebook_32.png", :size => "32x32", :alt => "Facebook" %> 
+          </a>
+          <a href="users/auth/twitter" class="auth_provider_home">
+          <%= image_tag "twitter_32.png", :size => "32x32", :alt => "twitter" %> 
+          </a>
+          <a href="users/auth/google_oauth2" class="auth_provider_home">
+          <%= image_tag "google_oauth2_32.png", :size => "32x32", :alt => "google_oauth2" %> 
+          </a>
+          <a href="users/auth/github" class="auth_provider_home">
+          <%= image_tag "github_32.png", :size => "32x32", :alt => "github" %> 
+          </a>
+          <a href="users/auth/open_id" class="auth_provider_home">
+          <%= image_tag "open_id_32.png", :size => "32x32", :alt => "open_id" %> 
+          </a>
+          <a href="users/auth/linkedin" class="auth_provider_home">
+          <%= image_tag "linkedin_32.png", :size => "32x32", :alt => "linkedin" %> 
+          </a>
+	  <a href="users/auth/yahoo" class="auth_provider_home">
+          <%= image_tag "yahoo_32.png", :size => "32x32", :alt => "yahoo" %> 
+          </a>
+          </div>
+          <div class="clear"></div>
+</div>

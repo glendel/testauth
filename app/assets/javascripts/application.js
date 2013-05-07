@@ -77,21 +77,28 @@ function searchFormHandler2( objFrm ) {
  * formHandlerS
  ********************/
 function formHandlerS( objForm ) {
-
+    
     var options = {
-
+      //dataType: 'json',
       beforeSubmit : function( arr, $form, options ) {
-       /* alert( 'I am going to send the form. If you want to do a validation here could be a righht place to do it!' );*/
-      },
-      success : function( data, textStatus, jqXHR, jForm ) {
-        /*alert( 'I already sent the form by AJAX! It is a right place for update the DOM.' );
-        alert( 'Thank you for your registering!' );*/
+        alert( 'I am going to send the form. If you want to do a validation here could be a righht place to do it!' );
       },
 
+      success : function( data, textStatus, jqXHR, jForm ) {
+        if ( data.status == 'error' ) {
+          alert( data.error );
+        } 
+        else {
+          window.location.reload();
+          //jQuery( '#connection-options' ).html( 'Signed in as ' + data.login + '. Not you? <a href="/users/sign_out?locale=en" data-method="delete" rel="nofollow">Sign out</a>' );
+          alert( 'I already sent the form by AJAX! It is a right place for update the DOM.' );
+          alert( 'Thank you for your registering!' );
+          Modalbox.hide();
+        }
+      }
     };
-    
+    console.log(objForm);
     jQuery( objForm ).ajaxSubmit( options );
-    
     return( false );
 }
 /********************
