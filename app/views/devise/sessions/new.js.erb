@@ -5,7 +5,9 @@
 <h2>Sign in</h2>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:onSubmit => "return( formHandlerS ( this ));"}) do |f| %>
-  <div id="messages" style="color: red"></div>
+  <div id="messages" style="color: red; font-size: 12px">
+  <br/>
+  </div>
 
    <p><%= f.label :'login or Email'%><br />
    <%= f.text_field :loginV %></p>
