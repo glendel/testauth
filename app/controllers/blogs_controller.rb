@@ -92,7 +92,7 @@ Rails.logger.debug( 'inside show' )
   def destroy
     @blog = Blog.find(params[:id])
     @blog.destroy
-
+      flash[:notice] = "The blog was successfully destroyed"
     respond_to do |format|
       format.html { redirect_to blogs_url }
       format.json { head :no_content }

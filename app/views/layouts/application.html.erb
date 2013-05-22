@@ -8,7 +8,7 @@
 <body>
 
 <div id="user_nav">
-  <h4 class="notice" ><%= notice %></h4> <h4 class="alert" style="text-align: left"><%= alert %></h4>
+  <%= render( { :partial => 'layouts/flash' } ) -%>
   <p><%= l Time.now, :format => :default %></p>
   <%= link_to 'Español', '?locale=es' %> | <%= link_to 'English', '?locale=en' %> <br />
   <span id="connection-options">
